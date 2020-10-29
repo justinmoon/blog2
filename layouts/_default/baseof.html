@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ block "title" . }}{{ .Title }} – {{ .Site.Title }}{{ end }}</title>
+    {{ partial "head/meta" . }}
+    {{ partial "head/scripts" . }}
+    {{ partial "head/styles.html" . }}
+    {{ partial "head/services" . }}
+  </head>
+  <body>
+    <script>
+      var localTheme = localStorage.getItem('theme');
+
+      if (localTheme && localTheme === 'dark') {
+        document.querySelector('body').className = 'dark';
+      }
+    </script>
+    <div class="grid-root bg-root color-root">
+      {{ partial "navbar/navbar.html" . }}
+      {{ block "main" . }}{{ end }}
+      {{ partial "footer/footer.html" . }}
+    </div>
+  </body>
+</html>

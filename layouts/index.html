@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{ $root := . }}
+
+  <article class="grid-mid md:grid-mid my-10">
+    {{ partial "home/home.html" . }}
+  </article>
+
+  {{ range $.Params.home }}
+    {{ if eq .type "background" }}
+      {{ if eq .useParticles true }}
+        {{ partial "home/home-particles.html" (dict "root" $root "local" .) }}
+      {{ end }}
+      
+      {{ if .classes }}
+        <div class="grid-full overflow-hidden {{ .classes }}"></div>
+      {{ end }}
+      
+      {{ if .image }}
+        {{ partial "home/home-background.html" . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+{{ end }}
